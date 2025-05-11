@@ -28,7 +28,7 @@ class  Database implements DatabaseInterface{
         try {
 
             $connetion = new PDO(
-                "{$this->database}:host= {$this->host}:{$this->port};
+                "{$this->database}:host={$this->host}:{$this->port};
                 dbname={$this->databaseName}", 
                 $this->user, 
                 $this->password,
