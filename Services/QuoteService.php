@@ -32,7 +32,7 @@ class QuoteService {
 
             $quotes[$i]["noCotizacion"] = random_int(100000,999999);
             $quotes[$i]["nombreProducto"] = $offer[$i]["name"];
-            $quotes[$i]["valor"] = $offer[$i]["value"];
+            $quotes[$i]["valor"] = "$". number_format($offer[$i]["value"], 0, '', '.');
             $quotes[$i]["placa"] = $licensePlate;
         }
 
