@@ -3,7 +3,7 @@
 require_once ("Services/QuoteService.php");
 require_once ("Repositories/QuoteRepository.php");
 require_once ("Repositories/Config/Database.php");
-require_once ("View/ResponseJSON.php");
+//require_once ("View/ResponseJSON.php");
 
 class QuoteController {
 
@@ -16,11 +16,9 @@ class QuoteController {
         $this->quoteService = new QuoteService($quoteRepository);
     }
 
-    public function offer(){
-        
-        $quotes = $this->quoteService->offers();
-        $jsonQuotes = json_encode($quotes);
-        ResponseJSON::response($jsonQuotes, "200 OK");
+    public function offer(): array{
+
+        return $this->quoteService->offers();
     }
 
 }
