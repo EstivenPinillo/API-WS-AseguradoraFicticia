@@ -9,20 +9,28 @@ class QuoteService {
         $this->quoteRepository = $quoteRepository;
     }
 
-    public function offers(){
+    public function offers(): array{
         
-        $name = $_REQUEST["name"];
-        $lastName = $_REQUEST["last_name"];
-        $dateBirth = $_REQUEST["date_birth"];
-        $licensePlate = $_REQUEST["license_plate"];
+        $input = json_decode(file_get_contents('php://input'), true);
+
+        if (!$input) {
+            http_response_code(400);
+            exit;
+        }
+
+        $name = $input["name"];
+        $lastName = $input["last_name"];
+        $dateBirth = $input["date_birth"];
+        $licensePlate = $input["license_plate"];
 
         $offer = $this->quoteRepository->getAllOffer();
 
+        $count = count($offer);
         $quotes = array();
 
-        for ($i=0; $i < count($offer) ; $i++) {
+        for ($i=0; $i < $count; $i++) {
 
-            $quotes[$i]["noCotizacion:"] = random_int(100000,999999);;
+            $quotes[$i]["noCotizacion"] = random_int(100000,999999);
             $quotes[$i]["nombreProducto"] = $offer[$i]["name"];
             $quotes[$i]["valor"] = $offer[$i]["value"];
             $quotes[$i]["placa"] = $licensePlate;
