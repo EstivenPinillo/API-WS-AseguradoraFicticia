@@ -6,7 +6,6 @@ abstract class Api {
 
         "QuoteController" => [
 
-            "GET" => ["/api/cotizar", "getQuotes"],
             "POST" => ["/api/cotizar", "offer"],
             "PUT" => ["/api/cotizar/{id}", "update"],
 
