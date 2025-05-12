@@ -30,6 +30,7 @@ abstract class Route {
         $methodRequet = Route::getMethod();
 
         $routeRequest = strtolower($urlRequest);
+        $count = 0;
         str_replace('/',".",$routeRequest, $count);
 
         $urlData = Route::getUrlData();
@@ -91,7 +92,12 @@ abstract class Route {
                 $function = $request[2];
 
                 $instanceClass = Route::getController($controllerClass);
-                $instanceClass->$function();    
+                
+                return $instanceClass->$function();
+
+            }else {
+                header("HTTP/1.0 503 Service Unavailable");
+                echo "invalid ENDPOINT response: ";
             }
 
         } catch (\Throwable $th) {
